@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://dg5cnsu6sy7cs"]
+
+[ext_resource type="AudioStream" uid="uid://c0uema2gygpgh" path="res://assets/audio/songs/placeholder_title_theme.mp3" id="1_52ufm"]
+[ext_resource type="Script" path="res://scripts/debug/title.gd" id="1_xsquq"]
+[ext_resource type="Shader" path="res://assets/shaders/animated_gradient.gdshader" id="2_1eh5w"]
+[ext_resource type="FontFile" uid="uid://df0gggbkuqljc" path="res://assets/fonts/tomorrow/Tomorrow-Medium.ttf" id="2_fw2pp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3iv75"]
+shader = ExtResource("2_1eh5w")
+
+[node name="Title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xsquq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_52ufm")
+autoplay = true
+bus = &"Music"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UI" type="VBoxContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/UI"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.83
+
+[node name="Label" type="Label" parent="HBoxContainer/UI/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fw2pp")
+theme_override_font_sizes/font_size = 40
+text = "Andromeda"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Logs" type="RichTextLabel" parent="HBoxContainer/UI"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FindMatch" type="Button" parent="HBoxContainer/UI"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Find Match"
+
+[node name="Quit" type="Button" parent="HBoxContainer/UI"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+material = SubResource("ShaderMaterial_3iv75")
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="HBoxContainer/UI/FindMatch" to="." method="_on_find_match_pressed"]
+[connection signal="pressed" from="HBoxContainer/UI/Quit" to="." method="_on_quit_pressed"]

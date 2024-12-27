@@ -13,7 +13,15 @@ config_version=5
 config/name="andromeda"
 run/main_scene="res://scenes/default.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+boot_splash/image="res://assets/splash/brand-icon.png"
 config/icon="res://icon.svg"
+
+[autoload]
+
+ServerInit="*res://scripts/multiplayer/server/server_init.gd"
+SceneLoader="*res://scripts/system/scene_loader.gd"
 
 [file_customization]
 
@@ -26,3 +34,4 @@ folder_colors={
 [rendering]
 
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4xej18nnpost"]
+
+[ext_resource type="Script" path="res://scripts/debug/default.gd" id="1_0tsqc"]
+
+[node name="root" type="Node"]
+script = ExtResource("1_0tsqc")
+
+[node name="FakeLoad" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="FakeLoad" to="." method="_on_fake_load_timeout"]

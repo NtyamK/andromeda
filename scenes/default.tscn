@@ -1,9 +1,22 @@
-[gd_scene format=3 uid="uid://c4xej18nnpost"]
+[gd_scene load_steps=3 format=3 uid="uid://c4xej18nnpost"]
 
-[node name="Default" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[ext_resource type="Script" path="res://scripts/debug/default.gd" id="1_0tsqc"]
+[ext_resource type="Texture2D" uid="uid://dwjkq421dec4l" path="res://assets/splash/brand-icon_inverted.png" id="2_uygn5"]
+
+[node name="root" type="Node"]
+script = ExtResource("1_0tsqc")
+
+[node name="FakeLoad" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 402.0
+offset_top = 187.0
+offset_right = 743.0
+offset_bottom = 428.0
+texture = ExtResource("2_uygn5")
+expand_mode = 1
+
+[connection signal="timeout" from="FakeLoad" to="." method="_on_fake_load_timeout"]

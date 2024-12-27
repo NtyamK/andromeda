@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsj723wqoil5a"]
+
+[ext_resource type="Script" path="res://scripts/multiplayer/lobby.gd" id="1_lr7rw"]
+[ext_resource type="Script" path="res://scripts/multiplayer/web_socket_client.gd" id="2_1sltm"]
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lr7rw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.432292
+anchor_top = 0.421296
+anchor_right = 0.583333
+anchor_bottom = 0.523148
+grow_horizontal = 2
+grow_vertical = 2
+text = "Waiting for match...."
+metadata/_edit_use_anchors_ = true
+
+[node name="WebSocketClient" type="Node" parent="."]
+script = ExtResource("2_1sltm")
+
+[connection signal="connected_to_server" from="WebSocketClient" to="." method="_on_websocket_client_connected_to_server"]
+[connection signal="connection_closed" from="WebSocketClient" to="." method="_on_websocket_client_connection_close"]
+[connection signal="message_received" from="WebSocketClient" to="." method="_on_websocket_message_received"]
