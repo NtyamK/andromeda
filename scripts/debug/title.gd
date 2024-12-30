@@ -28,12 +28,15 @@ func _on_websocket_client_connection_close():
 func _on_websocket_client_connected_to_server():
 	%Logs.add_text("client connected to server.\n")
 	%Logs.add_text("waiting for match...\n")
+	$HBoxContainer/UI/CreateMatches.disabled = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if ServerInit.has_signal("on_status_updated"):
 		ServerInit.connect("on_status_updated", on_server_status_updated)
 	ServerInit.init()
+	$HBoxContainer/UI/CreateMatches.disabled = true
+
 
 
 func on_server_status_updated(data: String):
