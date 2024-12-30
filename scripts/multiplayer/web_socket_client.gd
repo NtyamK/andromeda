@@ -35,6 +35,11 @@ func get_message() -> Variant:
 		return packet.get_string_from_utf8()
 	return bytes_to_var(packet)
 
+func _send_message(message_to_send):
+	var json_message = JSON.stringify(message_to_send)
+	send(json_message)
+
+
 func send(message) -> int:
 	if typeof(message) == TYPE_STRING:
 		return socket.send_text(message)

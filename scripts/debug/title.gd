@@ -4,6 +4,10 @@ extends Control
 @onready var logs: RichTextLabel = %Logs
 @onready var find_match: Button = %FindMatch
 
+const REQUEST_MATCHES = "REQUEST_MATCHES"
+const CREATE_MATCHES = "CREATE_MATCHES"
+
+
 var websocket_url = "wss://xguk2olqt9.execute-api.eu-north-1.amazonaws.com/production/"
 var messageToSend = ""
 
@@ -57,5 +61,7 @@ func _on_find_match_pressed() -> void:
 
 
 func _on_create_matches_pressed() -> void:
-	var messageToSend = "hello"
-	web_socket_client.send(messageToSend)
+	var messageToSend = {
+		"op" : CREATE_MATCHES
+	}
+	web_socket_client._send_message(messageToSend)
