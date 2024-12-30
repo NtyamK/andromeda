@@ -49,8 +49,13 @@ func _on_find_match_pressed() -> void:
 		"username": "Player" + mock_id,
 		"rank" : "311"
 	}
-	%Logs.add_text("measeret login not available.\n you are %s." % mock_user["username"] + "\n")
+	%Logs.add_text("measeret login not available.\nyou are %s." % mock_user["username"] + "\n")
 	%Logs.add_text("waiting for client to connect..." + "\n")
 	%FindMatch.hide()
 	
 	_connect_to_matchmaking_server()
+
+
+func _on_create_matches_pressed() -> void:
+	var messageToSend = "hello"
+	web_socket_client.send(messageToSend)

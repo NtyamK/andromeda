@@ -58,15 +58,22 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="CreateMatches" type="Button" parent="HBoxContainer/UI"]
+layout_mode = 2
+text = "DebugServerInit"
+flat = true
+
 [node name="FindMatch" type="Button" parent="HBoxContainer/UI"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Find Match"
+flat = true
 
 [node name="Quit" type="Button" parent="HBoxContainer/UI"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"
+flat = true
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
 material = SubResource("ShaderMaterial_3iv75")
@@ -76,6 +83,7 @@ size_flags_horizontal = 3
 [node name="WebSocketClient" type="Node" parent="."]
 script = ExtResource("5_2n4po")
 
+[connection signal="pressed" from="HBoxContainer/UI/CreateMatches" to="." method="_on_create_matches_pressed"]
 [connection signal="pressed" from="HBoxContainer/UI/FindMatch" to="." method="_on_find_match_pressed"]
 [connection signal="pressed" from="HBoxContainer/UI/Quit" to="." method="_on_quit_pressed"]
 [connection signal="connected_to_server" from="WebSocketClient" to="." method="_on_websocket_client_connected_to_server"]
